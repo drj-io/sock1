@@ -1,0 +1,58 @@
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+// Step 1
+var render = function(data){
+  var users = "";
+  console.log(data);
+  data.forEach(function(user,i){
+    users += "<li>" + user.Name + "/" + user.Age + "</li>";
+  })
+  $("#box").html(users);
+}
+
+var render2 = function(data){
+  var users = "";
+  console.log(data);
+
+  users += "<li>" + data.Name + "/" + data.Age + "</li>";
+  $("#box").append(users);
+}
+
+// Step 2 console
+
+// Step 3
+
+// $.ajax("/users/")
+//   .done(function(users) {
+//     console.log('users');
+//     render(users);
+//   });
+
+
+// Step 4
+$(document).ready(function(){
+  io.socket.get('/users/', function (users) {
+  // response contains a list of all users
+    console.log('users');
+    render(users);
+  });
+
+  io.socket.on("users", function(event){
+    console.log(event);
+    render2(event.data);
+  })
+
+});
+
+// Step 5
+
+
+
+
+</script>
+
+
+<div>
+  <ul id="box">
+  </ul>
+</div>
