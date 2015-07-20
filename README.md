@@ -18,6 +18,6 @@ to install, and
 sails lift
 ```
 
-to run the app.
+to run the app.  Uses sails-disk for ORM.  
 
 Hit me up if you have questions.
